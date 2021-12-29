@@ -12,14 +12,16 @@ Based on rep: https://github.com/PabloEmidio/Monty-Hall-problem
 
 #define SIMULATION_TIMES 500
 
+
 int getRandomInteger(int maxOption){
-    srand(time(0));
     return (rand() % maxOption) + 1;
 }
 
 int main(){
     unsigned short int carPosition = 0, doorWillBeOpenned = 0, playerChoice = 0, playerWon = 0;
     float winningsPercentage = 0.0;
+
+    srand(time(0));
 
     for (int i = 1; i < SIMULATION_TIMES; i++){
         carPosition = getRandomInteger(3);
