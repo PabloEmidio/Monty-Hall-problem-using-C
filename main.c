@@ -13,7 +13,7 @@ Based on rep: https://github.com/PabloEmidio/Monty-Hall-problem
 #define SIMULATION_TIMES 500
 
 int main(){
-    int carPosition = 0, doorWillBeOpenned = 0, playerChoice = 0, playerWon = 0;
+    unsigned short int carPosition = 0, doorWillBeOpenned = 0, playerChoice = 0, playerWon = 0;
     float winningsPercentage = 0.0;
 
     srand(time(0));
