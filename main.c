@@ -48,7 +48,7 @@ int main(){
 
     winningsPercentage = (float)playerWon / (float)SIMULATION_TIMES * 100.0;
 
-    printf("%d matches done, switching the door it\'d win %d times, %.2f of the matches\n", SIMULATION_TIMES, playerWon, winningsPercentage);
+    printf("%d matches done, switching the door it\'d win %d times, %.1f of the matches\n", SIMULATION_TIMES, playerWon, winningsPercentage);
 
     return 0;
 }
