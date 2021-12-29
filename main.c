@@ -12,18 +12,21 @@ Based on rep: https://github.com/PabloEmidio/Monty-Hall-problem
 
 #define SIMULATION_TIMES 500
 
+int getRandomInteger(int maxOption){
+    srand(time(0));
+    return (rand() % maxOption) + 1;
+}
+
 int main(){
     unsigned short int carPosition = 0, doorWillBeOpenned = 0, playerChoice = 0, playerWon = 0;
     float winningsPercentage = 0.0;
 
-    srand(time(0));
-
     for (int i = 1; i < SIMULATION_TIMES; i++){
-        carPosition = (rand() % 3) + 1;
-        playerChoice = (rand() % 3) + 1;
+        carPosition = getRandomInteger(3);
+        playerChoice = getRandomInteger(3);
 
         do {
-            doorWillBeOpenned = (rand() % 3) + 1;
+            doorWillBeOpenned = getRandomInteger(3);
         } while (doorWillBeOpenned == carPosition || doorWillBeOpenned == playerChoice);
         
         if ((playerChoice == 2 && doorWillBeOpenned == 3) || (playerChoice == 3 && doorWillBeOpenned == 2)){
