@@ -24,8 +24,7 @@ int main(){
 
         do {
             doorWillBeOpenned = (rand() % 3) + 1;
-        } 
-        while (doorWillBeOpenned == carPosition || doorWillBeOpenned == playerChoice);
+        } while (doorWillBeOpenned == carPosition || doorWillBeOpenned == playerChoice);
         
         if ((playerChoice == 2 && doorWillBeOpenned == 3) || (playerChoice == 3 && doorWillBeOpenned == 2)){
             playerChoice = 1;
