@@ -9,39 +9,37 @@ Based on rep: https://github.com/PabloEmidio/Monty-Hall-problem
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-#define SIMULATION_TIMES 500
-
-
-int getRandomInteger(int maxOption){
-    return (rand() % maxOption) + 1;
-}
+#include "utils.h"
 
 int main(){
-    unsigned short int carPosition = 0, doorWillBeOpenned = 0, playerChoice = 0, playerWon = 0;
-    float winningsPercentage = 0.0;
+
+    if (TOTAL_DOORS_AVAILABLE != PROBLEM_TOTAL_DOORS){
+        printf("The problem must have %d doors available, %d was given.\n", PROBLEM_TOTAL_DOORS, TOTAL_DOORS_AVAILABLE);
+        return 1; // Indicate a mistake on the total numbers of doors available.
+    }
 
     srand(time(0));
 
+    unsigned short int carPosition = 0, doorWillBeOpenned = 0, playerChoice = 0, playerFinalChoice=0, playerWon = 0;
+    float winningsPercentage = 0.0;
+
     for (int i = 1; i < SIMULATION_TIMES; i++){
-        carPosition = getRandomInteger(3);
-        playerChoice = getRandomInteger(3);
+        carPosition = getRandomInteger(TOTAL_DOORS_AVAILABLE);
+        playerChoice = getRandomInteger(TOTAL_DOORS_AVAILABLE);
 
         do {
-            doorWillBeOpenned = getRandomInteger(3);
+            doorWillBeOpenned = getRandomInteger(TOTAL_DOORS_AVAILABLE);
         } while (doorWillBeOpenned == carPosition || doorWillBeOpenned == playerChoice);
         
-        if ((playerChoice == 2 && doorWillBeOpenned == 3) || (playerChoice == 3 && doorWillBeOpenned == 2)){
-            playerChoice = 1;
-        } 
-        else if ((playerChoice == 1 && doorWillBeOpenned == 3) || (playerChoice == 3 && doorWillBeOpenned == 1)){
-            playerChoice = 2;
-        }
-        else if ((playerChoice == 1 && doorWillBeOpenned == 2) || (playerChoice == 2 && doorWillBeOpenned == 1)){
-            playerChoice = 3;
+
+        playerFinalChoice = switchDoor(playerChoice, doorWillBeOpenned);
+
+        if (playerFinalChoice == 0){
+            return 2; // Indicate a bad combination between playerChoice and doorWillBeOpenned.
         }
 
-        if (playerChoice == carPosition){
+
+        if (playerFinalChoice == carPosition){
             playerWon++;
         }
     }
