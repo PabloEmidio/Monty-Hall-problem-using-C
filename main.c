@@ -34,7 +34,7 @@ int main(){
 
         playerFinalChoice = switchDoor(playerChoice, doorWillBeOpenned);
 
-        if (playerFinalChoice == 0){
+        if (!playerFinalChoice){
             return 2; // Indicate a bad combination between playerChoice and doorWillBeOpenned.
         }
 
@@ -44,7 +44,7 @@ int main(){
         }
     }
 
-    winningsPercentage = (float)playerWon / (float)SIMULATION_TIMES * 100.0;
+    winningsPercentage = playerWon / SIMULATION_TIMES * 100.0;
 
     printf("%d matches done, switching the door it\'d win %d times, %.1f of the matches\n", SIMULATION_TIMES, playerWon, winningsPercentage);
 
