@@ -34,7 +34,7 @@ int main(){
 
         playerFinalChoice = switchDoor(playerChoice, doorWillBeOpenned);
 
-        if (playerFinalChoice == 0){
+        if (!playerFinalChoice){
             return 2; // Indicate a bad combination between playerChoice and doorWillBeOpenned.
         }
 
